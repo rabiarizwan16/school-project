@@ -7,7 +7,6 @@ export async function POST(req) {
   try {
     const formData = await req.formData();
 
-    // log everything
     for (const [key, value] of formData.entries()) {
       console.log("DEBUG >>>", key, value);
     }
@@ -19,7 +18,6 @@ export async function POST(req) {
     const contact = formData.get("contact");
     const email_id = formData.get("email_id");
 
-    // FIX: pick only File from FileList + File combo
     const allImages = formData.getAll("image");
     const file = allImages.find(item => item instanceof File) || null;
 
@@ -44,7 +42,7 @@ export async function POST(req) {
       console.log("DEBUG >>> No valid file found in formData");
     }
 
-    // Save into DB
+
     const db = await connectDB();
     await db.execute(
       "INSERT INTO schools (name, address, city, state, contact, email_id, image) VALUES (?, ?, ?, ?, ?, ?, ?)",
