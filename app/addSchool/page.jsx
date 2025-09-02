@@ -9,7 +9,7 @@ export default function AddSchool() {
     Object.keys(data).forEach((key) => {
       formData.append(key, data[key]);
     });
-    formData.append("image", data.image[0]); // image upload
+    formData.append("image", data.image[0]); 
 
     const res = await fetch("/api/addSchool", {
       method: "POST",
